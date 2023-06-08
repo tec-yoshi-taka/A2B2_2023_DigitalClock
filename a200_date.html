@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p class="timeText"></p>
+    <div id="dateText"></div>
+    <script>
+        "use strict";
+        const timeText = document.querySelector('.timeText');
+        const dateText = document.querySelector('#dateText');
+        const dayName = ['日', '月', '火', '水', '木', '金', '土'];
+        const addZero = (num) => {
+            // if(num < 10){
+            //     num = `0${num}`;
+            // }
+            num = num < 10 ? `0${num}` : num;
+            return num;
+        }
+        const clock = () => {
+            // 繰り返し実行
+            const now = new Date();
+            let hour = now.getHours() % 12;
+            let min = now.getMinutes();
+            let sec = now.getSeconds();
+            let year = now.getFullYear();
+            let month = now.getMonth() + 1;
+            let date = now.getDate();
+            let day = now.getDay();
+
+            // if(hour > 11){
+            //     hour -= 12
+            // }
+            // if(sec < 10){
+            //     sec = `0${sec}`;
+            // }else if(month < 10){
+            //     month = `0${month}`;
+            // }
+
+            timeText.innerHTML = `${addZero(hour)}:${addZero(min)}:${addZero(sec)}`;
+            dateText.innerHTML = `${year}/${addZero(month)}/${addZero(date)}(${dayName[day]})`;
+            requestAnimationFrame(clock);
+        };
+        clock();
+
+        // console.log(hour);
+        // if(day === 0){
+        //     day = '日';
+        // }else if(day === 1){
+        //     day = '月';
+        // }else if(day === 2){
+        //     day = '火';
+        // }else if(day === 3){
+        //     day = '水';
+        // }else if(day === 4){
+        //     day = '木';
+        // }else if(day === 5){
+        //     day = '金';
+        // }else if(day === 6){
+        //     day = '土';
+        // }
+        
+        //関数の定義
+        const abc = (num) => {
+            let b = num*num;
+            console.log('関数を実行');
+            return b;
+        }
+        //関数の呼び出し
+        let a = abc(5);
+        console.log(a);
+
+    </script>
+</body>
+
+</html>
